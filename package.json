@@ -1,0 +1,26 @@
+{
+  "name": "shiki-compress-wasm",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "bench": "vitest bench --run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.10.1",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.10.1",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@vitest/browser-playwright": "^5.0.3",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}
