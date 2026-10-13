@@ -1,6 +1,4 @@
 import { test } from "vitest";
-import { getWasmInstance } from "./base.js";
-import { getWasmInstance as getWasmInstanceNew } from "./new.js";
 
 const asmLibraryArg = {
   emscripten_get_now: () => Date.now(),
@@ -9,24 +7,23 @@ const asmLibraryArg = {
   fd_write: () => 0,
 };
 
-getWasmInstance({
-  env: asmLibraryArg,
-  wasi_snapshot_preview1: asmLibraryArg,
-});
-
 test("getWasmInstance", async ({ bench }) => {
   await bench.compare(
     bench("original", { perProject: true }, async () => {
-      getWasmInstance({
-        env: asmLibraryArg,
-        wasi_snapshot_preview1: asmLibraryArg,
-      });
+      await import("./base.ts").then(({ getWasmInstance }) =>
+        getWasmInstance({
+          env: asmLibraryArg,
+          wasi_snapshot_preview1: asmLibraryArg,
+        }),
+      );
     }),
     bench("compressed (gzip)", { perProject: true }, async () => {
-      getWasmInstanceNew({
-        env: asmLibraryArg,
-        wasi_snapshot_preview1: asmLibraryArg,
-      });
+      await import("./new.ts").then(({ getWasmInstance }) =>
+        getWasmInstance({
+          env: asmLibraryArg,
+          wasi_snapshot_preview1: asmLibraryArg,
+        }),
+      );
     }),
     {
       subtractTimerOverhead: true,
