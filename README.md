@@ -1,5 +1,10 @@
 # shiki-compress-wasm
 
+Average after 10 runs:
+
+- Decode uncompressed Base64: 30.8747 ms
+- Decode compressed Base64: 8.7585 ms, Uncompress gzip: 19.8913 ms = 28.6498 ms
+
 ## Benchmarks
 
 ### `{ "subtractTimerOverhead": true, "time": 500, "iterations": 32 }`
